@@ -1,2 +1,2 @@
 #!/bin/bash
-printf -S $CFILE main.s
+printf -S $CFILE -o s
