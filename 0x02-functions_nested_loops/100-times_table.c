@@ -2,7 +2,7 @@
 
 /**
  * print_times_table - Prints the n times table, starting with 0
- * @n: The value of the time =s table to be printed
+ * @n: The value of the times table to be printed
  * Return: if n greater than 15 or less than 0 stop printing
  */
 
@@ -23,7 +23,7 @@ void print_times_table(int n)
 	prod = num * mult;
 	if (prod <= 99)
 	_putchar(' ');
-	if (prod <= 0)
+	if (prod <= 9)
 	_putchar(' ');
 	if (prod >= 100)
 	{
