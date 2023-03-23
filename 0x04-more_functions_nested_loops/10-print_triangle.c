@@ -9,26 +9,25 @@
 void print_triangle(int size)
 
 {
-	int tri1, tri2;
+	int row, hashes, spaces;
 
-	if (size > 0)
+	if (size <= 0)
 	{
-		for (tri1 = 1; tri1 <= size; tri1++)
+		putchar('\n');
+	}
+	else
+	{
+		for (row = 1; row <= size; row++)
 		{
-			for ((tri2 = size - tri1); tri2 > 0; tri2++)
+			for (spaces = size - row; spaces >= 1; spaces--)
 			{
 				putchar(' ');
 			}
-			for (tri2 = 0; tri2 < tri1; tri2++)
+			for (hashes = 1; hashes <= row; hashes++)
 			{
 				putchar('#');
-			}
-			if (tri1 == size)
-			{
-				continue;
 			}
 			putchar('\n');
 		}
 	}
-	putchar('\n');
 }
