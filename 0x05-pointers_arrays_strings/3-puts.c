@@ -3,6 +3,7 @@
 /**
  * _puts - prints a string, followed by a new line, to sdtout
  * @*str: String pointer
+ * @str: The string
  * Return: Always 0.
  */
 
