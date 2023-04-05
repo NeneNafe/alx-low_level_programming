@@ -1,6 +1,8 @@
 #include "main.h"
 #include <math.h>
 
+int check_prime(int n, int j);
+
 /**
  * is_prime_number - return 1 if the integer is a prime number
  * @n: Am integer variable
