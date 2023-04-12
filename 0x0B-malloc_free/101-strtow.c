@@ -24,7 +24,7 @@ int word_len(char *str)
 
 /**
  * count_words - counts words in a string
- * @s: The string to be counted
+ * @str: The string to be counted
  * Return: Success
  */
 
