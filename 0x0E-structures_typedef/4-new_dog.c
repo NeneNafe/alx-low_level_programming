@@ -20,13 +20,13 @@ int _strlen(char *s)
 }
 
 /**
- * *_strncpy - copies a string
+ * *_strcpy - copies a string
  * @dest: destination
  * @src: string to be copied
  * Return: Success.
  */
 
-char *_strncpy(char *dest, char *src)
+char *_strcpy(char *dest, char *src)
 {
 	int n, len;
 
@@ -78,8 +78,8 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(dog->name);
 		return (NULL);
 	}
-	_strncpy(dog->name, name);
-	_strncpy(dog->owner, owner);
+	_strcpy(dog->name, name);
+	_strcpy(dog->owner, owner);
 	dog->age = age;
 
 	return (dog);
