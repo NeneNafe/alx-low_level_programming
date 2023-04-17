@@ -30,7 +30,7 @@ char *_strcpy(char *dest, char *src)
 {
 	int n, s;
 
-	len = 0;
+	s = 0;
 
 	while (src[s] != '\0')
 	{
