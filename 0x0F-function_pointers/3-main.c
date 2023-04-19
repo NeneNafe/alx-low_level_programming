@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	if (argc != 4)
 	{
 		printf("Error\n");
-		return (99);
+		return (98);
 	}
 
 	f = get_op_func(argv[2]);
