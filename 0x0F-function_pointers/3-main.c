@@ -19,9 +19,9 @@ int main(int argc, char **argv)
 		return (98);
 	}
 
-	f = get_op_func(argv[2]);
 	num1 = atoi(argv[1]);
 	num2 = atoi(argv[3]);
+	f = get_op_func(argv[2]);
 
 
 	if (f == NULL || (argv[2][1] != '\0'))
