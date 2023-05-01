@@ -9,12 +9,13 @@
 
 listint_t *add_nodeint_end(listint_t **head, const int n)
 {
-	listint_t *current_node, *last_node;
+	listint_t *current_node;
+	listint_t *last_node;
 
 	last_node = (listint_t *) malloc(sizeof(listint_t));
 
 
-	if (last_node != NULL)
+	if (last_node == NULL)
 	{
 		return (NULL);
 	}
