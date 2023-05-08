@@ -264,7 +264,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	Elf64_Ehdr *header;
 	int o, r;
-	
+
 	o = open(argv[1], O_RDONLY);
 	if (o == -1)
 	{
