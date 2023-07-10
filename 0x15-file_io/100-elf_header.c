@@ -8,11 +8,11 @@
 
 void check_elf(unsigned char *e_ident);
 void print_magic(unsigned char *e_ident);
-void print_cladd(unsigned char *e_ident);
+void print_class(unsigned char *e_ident);
 void print_data(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
 void print_abi(unsigned char *e_ident);
-void print_asabi(unsigned char *e_ident);
+void print_osabi(unsigned char *e_ident);
 void print_type(unsigned int e_type, unsigned char *e_ident);
 void print_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
@@ -166,7 +166,7 @@ void print_osabi(unsigned char *e_ident)
 			printf("ARM\n");
 			break;
 		case ELFOSABI_STANDALONE:
-			printf("Stabdalone App\n");
+			printf("Standalone App\n");
 			break;
 		default:
 			printf("<unknown: %x>\n", e_ident[EI_OSABI]);
@@ -199,7 +199,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 			printf("NONE (None)\n");
 			break;
 		case ET_REL:
-			printf("REL (Relocatsble file)\n");
+			printf("REL (Relocatable file)\n");
 			break;
 		case ET_EXEC:
 			printf("EXEC (Executable file)\n");
@@ -211,7 +211,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 			printf("CORE (Core file)\n");
 			break;
 		default:
-			printf("unnkown: %x\n", e_type);
+			printf("unnkown: %x>\n", e_type);
 	}
 }
 /**
@@ -248,6 +248,7 @@ void close_elf(int elf)
 	{
 		dprintf(STDERR_FILENO,
 				"Error: Can't close fd %d\n", elf);
+		exit(98);
 	}
 }
 /**
