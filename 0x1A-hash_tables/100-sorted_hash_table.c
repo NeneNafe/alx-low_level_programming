@@ -37,7 +37,7 @@ shash_table_t *shash_table_create(unsigned long int size)
  * shash_table_set - adds an element to the sortted hash table
  * @ht: the sorted hash table
  * @value: the value associated with the key
- * @ket: the key used
+ * @key: the key used
  * Return: 1 is succeded, 0 otherwise.
  */
 
@@ -91,6 +91,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		if (ht->shead != NULL)
 			ht->shead->sprev = new_node;
 		ht->shead = new_node;
+		if (ht->stail == NULL)
+			ht->stail = new_node;
 	}
 	else
 	{
@@ -99,10 +101,10 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 			temp = temp->snext;
 		new_node->sprev = temp;
 		new_node->snext = temp->snext;
-		if (temp->snext == NULL)
-			ht->stail = new_node;
-		else
+		if (temp->snext != NULL)
 			temp->snext->sprev = new_node;
+		else
+			ht->stail = new_node;
 		temp->snext = new_node;
 	}
 
