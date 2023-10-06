@@ -18,7 +18,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 	/* checks if the input values are valid */
 
-	indx = hash_djb2((const unsigned char *)key) % ht->size;
+	indx = key_index((const unsigned char *)key, ht->size);
 	/* calculates the index where the key-value pair would be stored */
 	new_node = malloc(sizeof(hash_node_t));
 	/* creates a new node to hold key and value */
@@ -34,7 +34,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 	}
 
-	new_node->value = (value == NULL) ? NULL : strdup(value);
+	new_node->value = (value == NULL) ? strdup("") : strdup(value);
 	if (value != NULL && new_node->value == NULL)
 	{
 		free(new_node->key);
