@@ -1,0 +1,49 @@
+#include "hash_tables.h"
+
+/**
+ * hash_table_set - add an element to the hash table
+ * @key: the key used
+ * @value: value associated with the key
+ * @ht: the elem to be inserted
+ *
+ * Return: 1 if succeeded, 0 otherwise
+ */
+
+int hash_table_set(hash_table_t *ht, const char *key, const char *value)
+{
+	hash_node_t *new_node;
+	unsigned long int indx;
+
+	if (ht == NULL || key == NULL || strcmp(key, "") == 0)
+		return (0);
+	/* checks if the input values are valid */
+
+	indx = hash_djb2((const unsigned char *)key) % ht->size;
+	/* calculates the index where the key-value pair would be stored */
+	new_node = malloc(sizeof(hash_node_t));
+	/* creates a new node to hold key and value */
+
+	if (new_node == NULL)
+		return (0);
+	/* the statements dup the key and value to ensure they're safely stored */
+
+	new_node->key = strdup(key);
+	if (new_node->key == NULL)
+	{
+		free(new_node);
+		return (0);
+	}
+
+	new_node->value = (value == NULL) ? NULL : strdup(value);
+	if (value != NULL && new_node->value == NULL)
+	{
+		free(new_node->key);
+		free(new_node);
+		return (0);
+	}
+
+	new_node->next = ht->array[indx];
+	ht->array[indx] = new_node;
+
+	return (1);
+}
