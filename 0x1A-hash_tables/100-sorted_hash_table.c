@@ -1,12 +1,11 @@
 #include "hash_tables.h"
 
-hash_table_t *hash_table_create(unsigned long int size);
-unsigned long int hash_djb2(const unsigned char *str);
-unsigned long int key_index(const unsigned char *key, unsigned long int size);
-int hash_table_set(hash_table_t *ht, const char *key, const char *value);
-char *hash_table_get(const hash_table_t *ht, const char *key);
-void hash_table_print(const hash_table_t *ht);
-void hash_table_delete(hash_table_t *ht);
+shash_table_t *shash_table_create(unsigned long int size);
+int shash_table_set(shash_table_t *ht, const char *key, const char *value);
+char *shash_table_get(const shash_table_t *ht, const char *key);
+void shash_table_print(const shash_table_t *ht);
+void shash_table_print_rev(const shash_table_t *ht);
+void shash_table_delete(shash_table_t *ht);
 
 /**
  * shash_table_create - creates a sorted hash table
@@ -69,28 +68,28 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	}
 
 	new_node = malloc(sizeof(shash_node_t));
-	if (new_node->key == NULL)
+	if (new_node == NULL)
 	{
 		free(value_copy);
 		return (0);
 	}
-
+	new_node->key = strdup(key);
+	if (new_node->key == NULL)
+	{
+		free(value_copy);
+		free(new_node);
+		return (0);
+	}
 	new_node->value = value_copy;
 	new_node->next = ht->array[indx];
 	ht->array[indx] = new_node;
 
-	if (ht->shead == NULL)
+	if (ht->shead == NULL || strcmp(ht->shead->key, key) >= 0)
 	{
-		new_node->sprev = NULL;
-		new_node->next = NULL;
-		ht->shead->sprev = new_node;
-		ht->shead = new_node;
-	}
-	else if (strcmp(ht->shead->key, key) > 0)
-	{
-		new_node->sprev = NULL;
 		new_node->snext = ht->shead;
-		ht->shead->sprev = new_node;
+		new_node->sprev = NULL;
+		if (ht->shead != NULL)
+			ht->shead->sprev = new_node;
 		ht->shead = new_node;
 	}
 	else
