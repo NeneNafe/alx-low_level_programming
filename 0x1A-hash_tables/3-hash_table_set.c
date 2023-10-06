@@ -12,6 +12,7 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	hash_node_t *new_node;
+	char *value_copy;
 	unsigned long int indx;
 
 	if (ht == NULL || key == NULL || strcmp(key, "") == 0)
@@ -22,28 +23,31 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	/* calculates the index where the key-value pair would be stored */
 	new_node = malloc(sizeof(hash_node_t));
 	/* creates a new node to hold key and value */
-
 	if (new_node == NULL)
 		return (0);
 	/* the statements dup the key and value to ensure they're safely stored */
-
 	new_node->key = strdup(key);
 	if (new_node->key == NULL)
 	{
 		free(new_node);
 		return (0);
 	}
+	if (value == NULL)
+		value_copy = strdup("");
+	else
+		value_copy = strdup(value);
 
-	new_node->value = (value == NULL) ? strdup("") : strdup(value);
-	if (value != NULL && new_node->value == NULL)
+	if (value != NULL && value_copy == NULL)
 	{
 		free(new_node->key);
 		free(new_node);
 		return (0);
 	}
-
-	new_node->next = ht->array[indx];
+	/*intitializes the new node */
+	new_node->value = value_copy;
+	new_node->next = NULL;
+	if (ht->array[indx] != NULL)
+		new_node->next = ht->array[indx];
 	ht->array[indx] = new_node;
-
 	return (1);
 }
