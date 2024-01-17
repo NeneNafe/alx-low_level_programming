@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "C:Users\\Dell\\AppData\\Local\\Programs\\MinGW\\bin",
+            "cStandard": "gnu89"
+        },
+        {
+            "name": "Win64",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": []
+        }
+    ],
+    "version": 4
+}
